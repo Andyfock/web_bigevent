@@ -15,6 +15,7 @@ html, body {
     position: absolute;
     left: 50%;
     top: 50%;
+    /* 因为是按照最左边和最上边的边框来移动50%，所以还要回撤自身的50% */
     transform: translate(-50%, -50%);
 }
 
