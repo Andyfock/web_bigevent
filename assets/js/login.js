@@ -15,6 +15,7 @@ $(function() {
 
     //从Layui获取到一个form对象
     var form = layui.form
+    var layer = layui.layer
     //通过form.verify函数来自定义校验规则
     form.verify({
         pwd: [
@@ -36,12 +37,17 @@ $(function() {
 
     //监听注册表单的提交事件
     $('#form_reg').on('submit', function(e){
+        //1.阻止默认提交行为
         e.preventDefault()
-        $.post('http://api-breakingnews-web.itheima.net/api/reguser', {username: $('#form_reg [name=username]').val(), password: $('#form_reg [name=password]').val()}, function (res) {
+        //2.发起ajax的post请求
+        var data = {username: $('#form_reg [name=username]').val(), password: $('#form_reg [name=password]').val()}
+        $.post('http://api-breakingnews-web.itheima.net/api/reguser', data, function (res) {
             if(res.status !== 0){
-                return console.log(res.message);
+                return layer.msg(res.message)
             }
-            console.log('register success!');
+            layer.msg('register success')
+            //模拟人的点击行为，注册后直接跳转登陆页面
+            $('#link_login').click()
         })
     })
 })
