@@ -41,13 +41,37 @@ $(function() {
         e.preventDefault()
         //2.发起ajax的post请求
         var data = {username: $('#form_reg [name=username]').val(), password: $('#form_reg [name=password]').val()}
-        $.post('http://api-breakingnews-web.itheima.net/api/reguser', data, function (res) {
+        $.post('/api/reguser', data, function (res) {
             if(res.status !== 0){
                 return layer.msg(res.message)
             }
             layer.msg('register success')
             //模拟人的点击行为，注册后直接跳转登陆页面
             $('#link_login').click()
+        })
+    })
+
+
+    //监听登陆表单的提交事件
+    $('#form_login').submit(function (e) {
+        //阻止默认提交行为
+        e.preventDefault()
+        $.ajax({
+            url: '/api/login',
+            method: 'POST',
+            //快速获取表单中的数据
+            data: $(this).serialize(),
+            success: function (res) {
+                if(res.status !== 0) {
+                    return layer.msg(res.msg)
+                }
+                layer.msg(res.msg)
+                // console.log(res.token);
+                //将登陆成功得到的token字符串，保存到localstorage中
+                localStorage.setItem('token', res.token)
+                //跳转到后台主页
+                location.href = '/index.html'
+            }
         })
     })
 })
