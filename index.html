@@ -6,6 +6,8 @@
     <title>Homepage</title>
     <!-- 导入layui的样式表 -->
     <link rel="stylesheet" href="/assets/lib/layui/css/layui.css">
+    <!-- 第三方图标库 -->
+    <link rel="stylesheet" href="/assets/fonts/iconfont.css"/>
     <!-- 导入自己的样式表 -->
     <link rel="stylesheet" href="/assets/css/index.css"/>
 </head>
@@ -18,8 +20,9 @@
         <!-- 头部区域（可配合layui 已有的水平导航） -->
         <ul class="layui-nav layui-layout-right">
           <li class="layui-nav-item layui-hide layui-show-md-inline-block">
-            <a href="javascript:;">
+            <a href="javascript:;" class="userinfo">
               <img src="//tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg" class="layui-nav-img">
+              <span class="text-avatar">A</span>
               Personal center
             </a>
             <dl class="layui-nav-child">
@@ -29,8 +32,9 @@
             </dl>
           </li>
           <li class="layui-nav-item" lay-header-event="menuRight" lay-unselect>
-            <a href="javascript:;">
-              <i class="layui-icon layui-icon-more-vertical">log out</i>
+            <!-- javascript:;阻止默认跳转行为 -->
+            <a href="javascript:;" id="btnLogout">
+              <span class="iconfont icon-tuichu"></span>log out
             </a>
           </li>
         </ul>
@@ -38,24 +42,30 @@
       
       <div class="layui-side layui-bg-black">
         <div class="layui-side-scroll">
+          <div class="userinfo">
+            <img src="//tva1.sinaimg.cn/crop.0.0.118.118.180/5db11ff4gw1e77d3nqrv8j203b03cweg.jpg" class="layui-nav-img">
+            <span class="text-avatar">A</span>
+            <span id="welcome"></span>
+          </div>
           <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
           <ul class="layui-nav layui-nav-tree" lay-shrink="all">
-            <li class="layui-nav-item"><a href="">Front page</a></li>
+            <!-- layui-this默认选中 -->
+            <li class="layui-nav-item layui-this" id="frontpage"><a href="/home/dashboard.html" target="fm"><span class="iconfont icon-home"></span>Front page</a></li>
             <li class="layui-nav-item">
-              <a class="" href="javascript:;">Manage article</a>
+              <a class="" href="javascript:;"><span class="iconfont icon-16"></span>Manage article</a>
               <dl class="layui-nav-child">
-                <dd><a href="javascript:;">Article category</a></dd>
-                <dd><a href="javascript:;">Article list</a></dd>
-                <dd><a href="javascript:;">Publish article</a></dd>
+                <dd><a href="javascript:;"><i class="layui-icon layui-icon-app"></i>Article category</a></dd>
+                <dd><a href="javascript:;"><i class="layui-icon layui-icon-app"></i>Article list</a></dd>
+                <dd><a href="javascript:;"><i class="layui-icon layui-icon-face-smile"></i>Publish article</a></dd>
                 <dd><a href="">the links</a></dd>
               </dl>
             </li>
             <li class="layui-nav-item">
-              <a href="javascript:;">Personal center</a>
+              <a href="javascript:;"><span class="iconfont icon-user"></span>Personal center</a>
               <dl class="layui-nav-child">
-                <dd><a href="javascript:;">Profile</a></dd>
-                <dd><a href="javascript:;">Change profile photo</a></dd>
-                <dd><a href="javascript:;">Reset password</a></dd>
+                <dd><a href="javascript:;"><i class="layui-icon layui-icon-app"></i>Profile</a></dd>
+                <dd><a href="javascript:;"><i class="layui-icon layui-icon-app"></i>Change profile photo</a></dd>
+                <dd><a href="javascript:;"><i class="layui-icon layui-icon-face-smile"></i>Reset password</a></dd>
               </dl>
             </li>
           </ul>
@@ -64,7 +74,7 @@
       
       <div class="layui-body">
         <!-- 内容主体区域 -->
-        <div style="padding: 15px;">内容主体区域。记得修改 layui.css 和 js 的路径</div>
+        <iframe name="fm" src="/home/dashboard.html" frameborder="0"></iframe>
       </div>
       
       <div class="layui-footer">
@@ -74,5 +84,11 @@
     </div>
     <!-- 导入layui的JS文件 -->
     <script src="/assets/lib/layui/layui.all.js"></script>
+    <!-- 导入Jquery -->
+    <script src="/assets/lib/jquery.js"></script>
+    <!-- 在jquery之后，自己的js文件之前导入baseAPI,因为要用到jquery，并且自己的js文件要用到baseAPI里的东西 -->
+    <script src="/assets/js/baseAPI.js"></script>
+    <!-- 导入自己的js文件 -->
+    <script src="/assets/js/index.js"></script>
     </body>
 </html>
