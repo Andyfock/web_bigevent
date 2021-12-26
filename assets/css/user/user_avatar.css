@@ -5,8 +5,11 @@ body {
 }
 
 body {
+  background-image: url(/assets/images/userback.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
   padding: 15px;
-  background-color: #f2f3f5;
+  /* background-color: #f2f3f5; */
 }
 
 /* 设置卡片主体区域的宽度 */
