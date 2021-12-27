@@ -1,0 +1,13 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  padding: 15px;
+  background-image: url(/assets/images/userback.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  /* background-color: #f2f3f5; */
+}
